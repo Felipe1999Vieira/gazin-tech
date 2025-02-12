@@ -1,0 +1,40 @@
+services:
+  backend:
+    image: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: deploy
+    ports:
+      - "3300:3300"
+    container_name: backend
+    environment:
+      - PORT:3300
+      - DATABASE_URL=postgresql://gazinTech:password@db:5432/gazinTech
+    depends_on:
+      - db
+
+  frontend:
+    image: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:13
+    container_name: db
+    environment:
+      - POSTGRES_USER=gazinTech
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=gazinTech
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:

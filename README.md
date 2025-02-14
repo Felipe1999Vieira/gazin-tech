@@ -159,9 +159,4 @@ npm run dev
 
 ---
 
-## 🎉 Conclusão
-
-Agora sua aplicação está rodando com sucesso!  
-Se tiver dúvidas ou sugestões, fique à vontade para contribuir.
-
 **Muito obrigado por chegar até aqui! 🚀**
